@@ -65,16 +65,10 @@ function hoursWorkedOnDate(employeeRecord, date) {
 }
 
 function wagesEarnedOnDate(employeeRecord, date){
-    const timeInEvent = employeeRecord.timeInEvents.find(event => event.date === date);
-    const timeOutEvent = employeeRecord.timeOutEvents.find(event => event.date === date);
+    const hoursWorked = hoursWorkedOnDate(employeeRecord, date);
+    const payAmount = employeeRecord.payPerHour;
 
-    if (timeInEvent && timeOutEvent) {
-        let amount = employeeRecord.payPerHour;
-        const wagesEarned = hoursWorkedOnDate(employeeRecord,date) * amount;
-        return wagesEarned;;
-    } else {
-        return 0;
-    }
+    return hoursWorked * payAmount; 
 }
 
 function allWagesFor(employeeRecord) {
